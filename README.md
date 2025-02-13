@@ -29,7 +29,8 @@ This installation guide will be split into instruction for installing the ROS 2 
   git clone https://github.com/f1tenth/f1tenth_gym_ros
   ```
 - Update correct parameter for path to map file:
-  Go to `sim.yaml` [https://github.com/f1tenth/f1tenth_gym_ros/blob/main/config/sim.yaml](https://github.com/f1tenth/f1tenth_gym_ros/blob/main/config/sim.yaml) in your cloned repo, change the `map_path` parameter to point to the correct location. It should be `'<your_home_dir>/sim_ws/src/f1tenth_gym_ros/maps/levine'`
+  Go to `sim.yaml` [https://github.com/f1tenth/f1tenth_gym_ros/blob/main/config/sim.yaml](https://github.com/f1tenth/f1tenth_gym_ros/blob/main/config/sim.yaml) in your cloned repo, change the `map_path` parameter to point to the correct location. It should be `'<your_home_dir>/sim_ws/src/f1tenth_gym_ros/maps/levine'` <br>
+  *Note:* This is the map used for the first three labs. In later labs, additional maps such as `levine_obs` and `levine_blocked` (introduced in Lab 4) will be available.
 - Install dependencies with rosdep:
   ```bash
   source /opt/ros/foxy/setup.bash
@@ -72,11 +73,11 @@ If your system does not support nvidia-docker2, noVNC will have to be used to fo
 1. Clone this repo 
 2. Bringup the novnc container and the sim container with docker-compose:
 ```bash
-docker-compose up
+sudo docker-compose up
 ``` 
 3. In a separate terminal, run the following, and you'll have the a bash session in the simulation container. `tmux` is available for convenience.
 ```bash
-docker exec -it f1tenth_gym_ros-sim-1 /bin/bash
+sudo docker exec -it f1tenth_gym_ros_sim_1 /bin/bash
 ```
 4. In your browser, navigate to [http://localhost:8080/vnc.html](http://localhost:8080/vnc.html), you should see the noVNC logo with the connect button. Click the connect button to connect to the session.
 
@@ -85,9 +86,7 @@ docker exec -it f1tenth_gym_ros-sim-1 /bin/bash
 1. `tmux` is included in the contianer, so you can create multiple bash sessions in the same terminal.
 2. To launch the simulation, make sure you source both the ROS2 setup script and the local workspace setup script. Run the following in the bash session from the container:
 ```bash
-$ source /opt/ros/foxy/setup.bash
-$ source install/local_setup.bash
-$ ros2 launch f1tenth_gym_ros gym_bridge_launch.py
+source /opt/ros/foxy/setup.bash && colcon build && source install/local_setup.bash && ros2 launch f1tenth_gym_ros gym_bridge_launch.py
 ```
 A rviz window should pop up showing the simulation either on your host system or in the browser window depending on the display forwarding you chose.
 

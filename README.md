@@ -159,7 +159,7 @@ There are multiple ways to launch your own agent to control the vehicles.
 - The second one is to create a new ROS 2 container for you agent node. Then create your own package and nodes inside. Launch the sim container and the agent container both. With default networking configurations for `docker`, the behavior is to put The two containers on the same network, and they should be able to discover and talk to each other on different topics. If you're using noVNC, create a new service in `docker-compose.yml` for your agent node. You'll also have to put your container on the same network as the sim and novnc containers.
 
 # Quick launcher for ROS Gym simulation
-If you using WSL2 or later for the simulation (like me), you can run `start_ws.bash` to quickly launch the simulation, it will also create a tmux session with convinient layout that help you to to work with Rviz from the `f1tenth_gym_ros_sim_1` container.
+If you using WSL2 or later for the simulation (like me), you can run `start_ws.bash` to quickly launch the simulation, it will also create a tmux session with convinient layout that helps you to to easily work with Rviz from the `f1tenth_gym_ros_sim_1` container.
 ``` bash
 source start_ws.bash
 ```
